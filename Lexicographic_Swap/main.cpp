@@ -3,7 +3,6 @@ string solve(string s) {
     string t = s;
     int n = s.length();
     sort(t.begin(), t.end());
-    int unoptimal = -1;
     if(s == t)
         return s;
     int i = 0;
