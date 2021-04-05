@@ -1,20 +1,16 @@
 //https://binarysearch.com/problems/Length-of-Longest-Balanced-Subsequence
 int solve(string s) {
-    int open = 0, close = 0;
+    int n = s.length(), bal = 0;
     int ans = 0;
-    for(int i = 0; i < s.length(); i++){
+    for(int i = 0; i < n; i++){
         if(s[i] == '(')
-            open++;
-        else
-            close++;
-
-        if(open >= close && close >= 1){
-            ans += close*2;
-            open--, close--;
+            bal++;
+        else{
+            if(bal)
+                ans += 2;
+            bal--;
         }
-        else if(close > open){
-            close = open;
-        }
+        bal = max(bal, 0);
     }
     return ans;
 }
