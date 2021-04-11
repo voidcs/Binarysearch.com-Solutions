@@ -2,14 +2,11 @@
 int solve(int n) {
     int ans = 1;
     while(n != 1){
-        if(n%2 == 0){
-            n /= 2;
-            ans++;
-        }
-        else{
+        ans++;
+        if(n%2)
             n = (3*n)+1;
-            ans++;
-        }
+        else
+            n /= 2;
     }
     return ans;
 }
