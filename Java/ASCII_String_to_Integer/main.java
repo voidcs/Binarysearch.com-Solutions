@@ -1,19 +1,18 @@
+//https://binarysearch.com/problems/ASCII-String-to-Integer
 import java.util.*;
 
 class Solution {
     public int solve(String s) {
-        int ans = 0;
         int n = s.length();
+        int ans = 0;
         for(int i = 0; i < n; i++){
-            int j = i;
-            String num = "";
-            while(j < n && Character.isDigit(s.charAt(j))){
-                num += s.charAt(j);
-                j++;
+            char c = s.charAt(i);
+            int add = 0;
+            while(i < n && Character.isDigit(s.charAt(i))){
+                add = (add * 10) + (s.charAt(i) - '0');
+                i++;
             }
-            i = j;
-            if(num.length() > 0)
-                ans += Integer.parseInt(num);
+            ans += add;
         }
         return ans;
     }
