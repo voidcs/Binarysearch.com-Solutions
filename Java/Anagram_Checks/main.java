@@ -2,18 +2,12 @@
 import java.util.*;
 
 class Solution {
-    public boolean solve(String a, String b) {
-        char x[] = a.toCharArray();
-        char y[] = b.toCharArray();
-        Arrays.sort(x);
-        Arrays.sort(y);
-        if(x.length != y.length)
-            return false;
-        boolean valid = true;
-        for(int i = 0; i < x.length; i++){
-            if(x[i] != y[i])
-                valid = false;
-        }
-        return valid;
+    public boolean solve(String s0, String s1) {
+        char[] temp = s0.toCharArray();
+        char[] a = s0.toCharArray();
+        char[] b = s1.toCharArray();
+        Arrays.sort(a);
+        Arrays.sort(b);
+        return new String(a).equals(new String(b));
     }
 }
