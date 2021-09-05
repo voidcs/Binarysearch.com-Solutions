@@ -7,22 +7,19 @@
  * };
  */
 LLNode* solve(LLNode* node) {
+    bool first = 1;
     if(!node)
         return node;
-    vector<int> v;
-    while(node){
-        v.push_back(node->val);
-        node = node->next;
-    }
-    reverse(v.begin(), v.end());
-    LLNode* ans = new LLNode;
-    ans->val = v[0];
-    LLNode* temp = ans;
-    for(int i = 1; i < v.size(); i++){
-        LLNode* u = new LLNode;
-        u->val = v[i];
-        temp->next = u;
-        temp = u;
-    }
+    LLNode* ans;
+    function<void(LLNode*, LLNode*)> f = [&](LLNode* u, LLNode* par){
+        if(u->next)
+            f(u->next, u);
+        if(first){
+            ans = u;
+            first = 0;
+        }
+        u->next = par;
+    };
+    f(node, nullptr);
     return ans;
 }
