@@ -1,19 +1,15 @@
 //https://binarysearch.com/problems/Look-and-Say
-string solve(int n){
+string solve(int n) {
     string ans = "1";
-    n--;
-    while(n--){
-        string t = ans;
+    while(--n){
         string newAns;
-        for(int i = 0; i < t.length(); i++){
-            char c = t[i];
-            int cnt = 1;
-            while(i < t.length() && t[i+1] == c){
-                cnt++;
-                i++;
-            }
-            newAns += to_string(cnt);
-            newAns += c;
+        for(int i = 0; i < ans.length(); i++){
+            int j = i, cnt = 0;
+            while(j < ans.length() && ans[j] == ans[i])
+                j++, cnt++;
+            string s;
+            newAns += string(1, cnt + '0') + ans[i];
+            i = j-1;
         }
         ans = newAns;
     }
