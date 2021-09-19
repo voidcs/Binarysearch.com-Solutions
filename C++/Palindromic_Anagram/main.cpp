@@ -1,12 +1,12 @@
-//https://binarysearch.com/problems/Palindromic-Anagram
 bool solve(string s) {
-    map<char, int> m;
-    for(int i = 0; i < s.length(); i++)
-        m[s[i]]++;
-    int cnt = 0;
-    for(auto x: m){
-        if(x.second%2)
-            cnt++;
+    vector<int> cnt(26);
+    for(char c: s){
+        cnt[c-'a']++;
     }
-    return cnt <= 1;
+    int odds = 0;
+    for(int i = 0; i < 26; i++){
+        if(cnt[i]%2)
+            odds++;
+    }
+    return odds <= 1;
 }
