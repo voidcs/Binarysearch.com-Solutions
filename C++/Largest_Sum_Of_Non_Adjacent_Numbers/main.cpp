@@ -1,19 +1,13 @@
-https://binarysearch.com/problems/Largest-Sum-of-Non-Adjacent-Numbers
-int solve(vector<int>& a) {
-    int n = a.size();
-    int ans = 0, sum = 0;
-    vector<int> dp(n+1, 0);
-    for(int i = 0; i < n; i++){
-        dp[i] = max(dp[i], a[i]);
-        if(i == 2){
-            dp[i] = max(dp[i], dp[i] + dp[i-2]);
-        }
-        else if(i >= 3){
-            dp[i] = max({dp[i], dp[i] + dp[i-2], dp[i] + dp[i-3]});
-        }
-        
+//https://binarysearch.com/problems/Largest-Sum-of-Non-Adjacent-Numbers
+int solve(vector<int>& v) {
+    int n = v.size();
+    vector<vector<int>> dp(n+1, vector<int>(2));
+    for(int i = 1; i <= n; i++){
+        dp[i][0] = max(dp[i-1][0], dp[i-1][1]);
+        dp[i][1] = dp[i-1][1];
+        dp[i][1] = max(dp[i][1], dp[i-1][0] + v[i-1]);
+        if(i-2 >= 0)
+            dp[i][0] = max(dp[i][0], dp[i-2][1]);
     }
-    for(int i = 0; i < n; i++)
-        ans = max(ans, dp[i]);
-    return ans;
+    return max(dp[n][0], dp[n][1]);
 }
