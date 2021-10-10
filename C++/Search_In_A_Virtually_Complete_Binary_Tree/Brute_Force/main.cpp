@@ -1,3 +1,4 @@
+//https://binarysearch.com/problems/Search-in-a-Virtually-Complete-Binary-Tree
 /**
  * class Tree {
  *     public:
@@ -7,21 +8,15 @@
  * };
  */
 bool solve(Tree* root, int target) {
-    if(root == nullptr)
-        return 0;
-    stack<Tree*> s;
-    bool flag = 0;
-    s.push(root);
-    while(!s.empty()){
-        Tree* u = s.top();
-        s.pop();
+    bool ans = false;
+    function<void(Tree*)> dfs = [&](Tree* u){
         if(u->val == target)
-            flag = 1;
-        if(u->left != nullptr)
-            s.push(u->left);
-        if(u->right != nullptr)
-            s.push(u->right);
-    }
-    return flag;
-
+            ans = true;
+        if(u->left)
+            dfs(u->left);
+        if(u->right)
+            dfs(u->right);
+    };
+    dfs(root);
+    return ans;
 }
