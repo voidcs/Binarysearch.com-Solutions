@@ -1,17 +1,19 @@
 //https://binarysearch.com/problems/Range-Update
 vector<int> solve(vector<int>& nums, vector<vector<int>>& operations) {
-    vector<int> dx(nums.size()+1);
+    int n = nums.size();
+    vector<int> p(n+1);
     for(int i = 0; i < operations.size(); i++){
-        int l = operations[i][0];
-        int r = operations[i][1];
+        int left = operations[i][0];
+        int right = operations[i][1];
         int x = operations[i][2];
-        dx[l] += x;
-        dx[r+1] -= x;
+        p[left] += x;
+        p[right+1] -= x;
     }
-    int prefix = 0;
-    for(int i = 0; i < nums.size(); i++){
-        prefix += dx[i];
-        nums[i] += prefix;
+    vector<int> ans(n);
+    int sum = 0;
+    for(int i = 0; i < n; i++){
+        sum += p[i];
+        ans[i] = sum+nums[i];
     }
-    return nums;
+    return ans;
 }
