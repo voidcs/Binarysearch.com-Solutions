@@ -1,8 +1,18 @@
 //https://binarysearch.com/problems/Square-of-a-List
 vector<int> solve(vector<int>& v) {
-    for(int i = 0; i < v.size(); i++){
-        v[i] = v[i]*v[i];
+    int n = v.size();
+    int l = 0, r = n-1;
+    vector<int> ans;
+    while(l <= r){
+        if(abs(v[l]) >= abs(v[r])){
+            ans.push_back(v[l]*v[l]);
+            l++;
+        }
+        else{
+            ans.push_back(v[r]*v[r]);
+            r--;
+        }
     }
-    sort(v.begin(), v.end());
-    return v;
+    reverse(ans.begin(), ans.end());
+    return ans;
 }
