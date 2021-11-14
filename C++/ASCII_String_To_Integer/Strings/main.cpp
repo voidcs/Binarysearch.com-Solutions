@@ -4,13 +4,10 @@ int solve(string s) {
     int n = s.length();
     for(int i = 0; i < n; i++){
         string num;
-        int j = i;
-        while(j < n && isdigit(s[j])){
-            num += s[j];
-            j++;
+        while(i < n && isdigit(s[i])){
+            num += s[i++];
         }
-        i = j;
-        if(num.size() > 0)
+        if(num.size())
             ans += stoi(num);
     }
     return ans;
