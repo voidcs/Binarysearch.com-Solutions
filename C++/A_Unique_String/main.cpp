@@ -1,8 +1,12 @@
 //https://binarysearch.com/problems/A-Unique-String
 bool solve(string s) {
-    set<char> cnt;
+    bool ok = 1;
+    vector<int> cnt(26);
     for(int i = 0; i < s.length(); i++){
-        cnt.insert(s[i]);
+        int j = s[i] - 'a';
+        if(cnt[j] == 1)
+            ok = 0;
+        cnt[j] = 1;
     }
-    return cnt.size() == s.length();
+    return ok;
 }
